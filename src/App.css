@@ -1,0 +1,554 @@
+/* --- Main Editorial App Layout and Spacing --- */
+
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 1;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+}
+
+section {
+  padding: 10rem 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--hairline-border); /* Subtle section grid division */
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 6rem 0;
+    min-height: auto;
+  }
+}
+
+/* Hairline Grid Overlay Helper */
+.grid-hairline {
+  position: relative;
+}
+
+.grid-hairline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--hairline-border);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Unified Solid Editorial Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.85rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: 0px; /* Sharp Swiss edges */
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: var(--transition-fast);
+}
+
+.btn-primary {
+  background: var(--accent-cobalt-solid);
+  color: #ffffff;
+  border: 1px solid var(--accent-cobalt-solid);
+}
+
+.btn-primary:hover {
+  background: var(--accent-cobalt-solid-hover);
+  border-color: var(--accent-cobalt-solid-hover);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--hairline-border);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-cobalt);
+  color: var(--accent-cobalt);
+  background: var(--accent-cobalt-muted);
+  transform: translateY(-2px);
+}
+
+/* Minimal Systems Timeline */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--hairline-border);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.25rem; /* Perfectly centered relative to 2rem padding and 8px width */
+  top: 0.6rem;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-cobalt);
+}
+
+.timeline-date {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-cobalt);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.timeline-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-company {
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--accent-terracotta);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timeline-desc {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 480px) {
+  .timeline {
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    margin-bottom: 2.5rem;
+  }
+  .timeline-item::before {
+    left: -1.75rem; /* Perfectly centered relative to 1.5rem padding and 8px width */
+    top: 0.5rem;
+  }
+  .timeline-title {
+    font-size: 1.05rem;
+    margin-bottom: 0.2rem;
+  }
+  .timeline-company {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .timeline-desc {
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+}
+
+/* Tech Grid Item */
+.tech-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: hsla(220, 15%, 12%, 0.5);
+  border: 1px solid var(--hairline-border);
+  padding: 0.3rem 0.75rem;
+  border-radius: 0px;
+  letter-spacing: -0.01em;
+  transition: var(--transition-fast);
+}
+
+.tech-tag:hover {
+  border-color: var(--accent-cobalt);
+  color: var(--text-primary);
+}
+
+/* --- Responsive Projects & Cards Layout (Refined by Senior Specialist) --- */
+
+.projects-filter-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .projects-filter-nav {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem 1.5rem;
+    margin-bottom: 2.5rem;
+    width: calc(100% + 3rem);
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+  }
+  .projects-filter-nav::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
+  }
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+}
+
+.project-card-header {
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.project-card-body {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .project-card-header {
+    padding: 1.25rem;
+    gap: 0.75rem;
+  }
+  .project-card-body {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+}
+
+/* Premium Card Scaling & Responsive Hover Control */
+.card-scale {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease;
+}
+
+@media (hover: hover) {
+  .card-scale:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* High-Legibility & Responsive Text Handling */
+.project-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 0.15rem;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.project-desc {
+  color: var(--text-dim);
+  font-size: 0.925rem;
+  line-height: 1.65;
+  flex: 1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Elegant touch-target links */
+.project-link-btn {
+  color: var(--text-dimmer);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+.project-link-btn:hover {
+  color: var(--accent-cobalt) !important;
+  background: var(--accent-cobalt-muted);
+}
+
+.project-tech-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.project-tech-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  background: var(--bg-deep);
+  border: 1px solid var(--glass-border);
+  padding: 0.25rem 0.65rem;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+/* --- Responsive About & Skills Layout --- */
+
+/* About Grid Layout */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 5rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+}
+
+.about-left-col {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.about-intro {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-lead {
+  font-size: 1.65rem;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.about-paragraph {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.about-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.about-stat-card {
+  padding: 1.5rem;
+  text-align: left;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.about-stat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.about-stat-card-number {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dimmer);
+}
+
+.about-stat-card-value {
+  font-size: 1.5rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-top: 0.25rem;
+}
+
+.about-stat-card-label {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-dimmer);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.about-right-col {
+  text-align: left;
+}
+
+.about-timeline-heading {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  font-weight: 600;
+  font-style: italic;
+  margin-bottom: 2.5rem;
+  color: var(--text-primary);
+}
+
+/* Skills Grid Layout */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.skill-card {
+  padding: 2.5rem 2rem;
+  border-radius: 2px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.skill-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skill-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.skill-card-desc {
+  color: var(--text-dim);
+  font-size: 0.925rem;
+  line-height: 1.6;
+}
+
+/* Media Queries for Responsive Spacing and Layouts */
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .about-lead {
+    font-size: 1.5rem;
+  }
+  .about-paragraph {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .about-timeline-heading {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .skills-grid {
+    gap: 2rem;
+  }
+  .skill-card {
+    padding: 2rem 1.5rem;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-grid {
+    gap: 2.5rem;
+    margin-top: 1rem;
+  }
+  .about-left-col {
+    gap: 2rem;
+  }
+  .about-lead {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+  }
+  .about-paragraph {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .about-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .about-stat-card {
+    padding: 1.25rem 1rem;
+    gap: 0.5rem;
+  }
+  .about-stat-card-value {
+    font-size: 1.35rem;
+  }
+  .about-timeline-heading {
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .skill-card {
+    padding: 1.5rem 1.25rem;
+    gap: 1rem;
+  }
+  .skill-card-body {
+    gap: 0.5rem;
+  }
+  .skill-card-title {
+    font-size: 1.1rem;
+  }
+  .skill-card-desc {
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+}

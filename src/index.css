@@ -1,0 +1,203 @@
+/* --- Creative Web & AI Developer Editorial Theme — Ashmil P --- */
+
+:root {
+  /* Elegant Dark Editorial Palette */
+  --bg-deep: #08080a;           /* Clean Carbon Black */
+  --bg-card: #0f0f13;           /* Charcoal Slate Solid Card */
+  --bg-card-hover: #14141a;     /* Slightly lighter structural grey */
+  
+  --text-primary: #f5f5f7;      /* Warm high-contrast off-white */
+  --text-dim: #9ea3b0;          /* Subtle structural grey */
+  --text-dimmer: #565a65;       /* Muted coordinate grey */
+  
+  /* Rich, Curated Accent Colors (Precision Cobalt & Industrial Terracotta) */
+  --accent-cobalt: #3b82f6;           /* Brilliant Systems Cobalt (highly legible for text, icons, borders on dark bg - WCAG AA Compliant 6.7:1) */
+  --accent-cobalt-hover: #60a5fa;     /* Refined hover accent color */
+  --accent-cobalt-solid: #2563eb;     /* Solid button background (contrast compliant with white text - 5.2:1) */
+  --accent-cobalt-solid-hover: #1d4ed8; /* Darker Solid Cobalt for button hover state (6.5:1) */
+  --accent-cobalt-muted: rgba(59, 130, 246, 0.08); /* Transparent blue fill for hover */
+  --accent-terracotta: #d97706;  /* Alert Amber / Functional Terracotta (6.5:1 contrast on dark bg) */
+  --accent-terracotta-muted: rgba(217, 119, 6, 0.08);
+  
+  /* Precision Grid Lines & Structural Borders */
+  --grid-border: #1a1a22;       /* High-contrast solid architectural line */
+  --grid-border-highlight: #31313e;
+  --hairline-border: var(--grid-border); /* Resolves missing hairline borders in App.css */
+  --glass-border: var(--grid-border);    /* Resolves missing card/panel borders in components */
+  
+  /* Layout Accent Mapping Helpers */
+  --accent: var(--accent-cobalt);
+  --accent-muted: var(--accent-cobalt-muted);
+  
+  /* Custom High-Quality Typography Pairings */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Core Metrics & Transitions */
+  --container-max: 1280px;
+  --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.15s ease-out;
+}
+
+/* Base Layout & CSS Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--bg-deep);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Editorial Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1c1c24;
+  border: 1px solid var(--grid-border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cobalt);
+}
+
+/* Text Selection */
+::selection {
+  background: var(--accent-cobalt-muted);
+  color: #fff;
+}
+
+/* Base Link & Navigation Elements */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+/* Structural Container */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 3rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+/* Asymmetrical Left-Aligned Editorial Section Title */
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 400;
+  font-style: italic;
+  text-align: left;
+  margin-bottom: 4rem;
+  position: relative;
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid var(--grid-border);
+  padding-bottom: 1.5rem;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.section-title::after {
+  content: '// SECTION.REF';
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  color: var(--text-dimmer);
+}
+
+/* Premium Contrast Text Styles */
+.gradient-text {
+  color: var(--text-primary);
+}
+
+/* Solid Swiss Card Style */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--grid-border);
+  border-radius: 4px;
+  box-shadow: none;
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  border-color: var(--grid-border-highlight);
+  background: var(--bg-card-hover);
+}
+
+.glass-card-accent {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-cobalt);
+}
+
+/* Scroll Reveal Orchestration */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 0.08s; }
+.delay-200 { transition-delay: 0.15s; }
+.delay-300 { transition-delay: 0.22s; }
+.delay-400 { transition-delay: 0.3s; }

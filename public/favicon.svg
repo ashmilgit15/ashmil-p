@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" rx="0" fill="#0c0d12" />
+  <!-- Minimal geometric letter 'A' and 'P' monogram -->
+  <path d="M30 70 V30 H55 A15 15 0 0 1 70 45 A15 15 0 0 1 55 60 H30 M45 30 V70" stroke="#3b82f6" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter" fill="none" />
+  <!-- Thin structural accent line representing system grid -->
+  <line x1="15" y1="50" x2="85" y2="50" stroke="rgba(255, 255, 255, 0.15)" stroke-width="2" stroke-dasharray="4 4" />
+</svg>
