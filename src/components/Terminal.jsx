@@ -91,9 +91,10 @@ const Terminal = () => {
           case 'contact':
             newHistory.push(
               { text: 'Communication Coordinates:', type: 'accent' },
-              { text: '  Email   : ashmildax15@gmail.com', type: 'text' },
-              { text: '  Phone   : +91 9383412745', type: 'text' },
-              { text: '  Github  : github.com/ashmilgit15', type: 'text' }
+              { text: '  Email     : ashmilforwork@gmail.com', type: 'text' },
+              { text: '  Phone     : +91 9383412745', type: 'text' },
+              { text: '  Instagram : @4_shmil', type: 'text' },
+              { text: '  Github    : github.com/ashmilgit15', type: 'text' }
             );
             break;
             

@@ -18,6 +18,24 @@ const GithubIcon = ({ size = 20 }) => (
   </svg>
 );
 
+const InstagramIcon = ({ size = 20 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
 const Contact = () => {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -28,17 +46,25 @@ const Contact = () => {
     if (!formState.name || !formState.email || !formState.message) return;
     
     setLoading(true);
+    
+    const subject = encodeURIComponent(`Portfolio Contact from ${formState.name}`);
+    const body = encodeURIComponent(
+      `Hello Ashmil,\n\n${formState.message}\n\n---\nSent by: ${formState.name}\nEmail: ${formState.email}`
+    );
+    const mailtoUrl = `mailto:ashmilforwork@gmail.com?subject=${subject}&body=${body}`;
+    
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
       setFormState({ name: '', email: '', message: '' });
-    }, 1200);
+      window.location.href = mailtoUrl;
+    }, 1000);
   };
 
   const contactChannels = [
-    { icon: <Mail size={18} />, title: 'Email', value: 'ashmildax15@gmail.com', subValue: 'Best way to reach me', href: 'mailto:ashmildax15@gmail.com' },
-    { icon: <Phone size={18} />, title: 'Phone', value: '+91 938 341 2745', subValue: 'Available most days', href: 'tel:+919383412745' },
-    { icon: <MapPin size={18} />, title: 'Dev Setup', value: 'Fedora OS // Hyprland', subValue: 'My daily workstation', href: '#' },
+    { icon: <Mail size={18} />, title: 'Email', value: 'ashmilforwork@gmail.com', subValue: 'Best way to reach me', href: 'mailto:ashmilforwork@gmail.com' },
+    { icon: <Phone size={18} />, title: 'Phone', value: '+91 9383412745', subValue: 'Available most days', href: 'tel:+919383412745' },
+    { icon: <InstagramIcon size={18} />, title: 'Instagram', value: '@4_shmil', subValue: 'Follow / DM me on Instagram', href: 'https://instagram.com/4_shmil' },
     { icon: <GithubIcon size={18} />, title: 'Github', value: 'github.com/ashmilgit15', subValue: 'My projects & code', href: 'https://github.com/ashmilgit15' }
   ];
 
